@@ -11,7 +11,7 @@ DeepGCCA is a non-linear version of GCCA which uses neural networks as the featu
 # Prerequest:
 
 - Python 3.6>=
-- Pytorch 1.4 >= (should aslso work with >=1.0)
+- Pytorch 1.4 >= (should also work with >=1.0)
 - Numpy
 - Scipy
 - Seanborn
