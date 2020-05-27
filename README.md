@@ -6,12 +6,12 @@ Adrian Benton, Huda Khayrallah, Biman Gujral, Dee Ann Reisinger, Sheng Zhang, an
 [(Paper-link)](https://www.aclweb.org/anthology/W19-4301/)
 
 
-DeepGCCA is a non-linear version of GCCA which uses neural networks as the feature extractor functions instead of linear transformers. DGCCA is some how exention of DeepCCA for more than two views though it has a different obective function.
+DeepGCCA is a non-linear version of GCCA which uses neural networks as the feature extractor functions instead of linear transformers. DGCCA is some how exention of DeepCCA for more than two views though it has a different objective function.
 
 # Prerequest:
 
 - Python 3.6>=
-- Pytorch 1.4 >= (should works with >=1.0, though, higher versions are recommended)
+- Pytorch 1.4 >= (should aslso work with >=1.0)
 - Numpy
 - Scipy
 - Seanborn
