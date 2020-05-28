@@ -6,7 +6,27 @@ Adrian Benton, Huda Khayrallah, Biman Gujral, Dee Ann Reisinger, Sheng Zhang, an
 [(Paper-link)](https://www.aclweb.org/anthology/W19-4301/)
 
 
-DeepGCCA is a non-linear version of GCCA which uses neural networks as the feature extractor functions instead of linear transformers. DGCCA is some how exention of DeepCCA for more than two views though it has a different objective function.
+
+# Deep Generalized Canonical Correlation Analysis:
+
+
+*Generalized Canonical Correlation Analysis (GCCA)* is a method which corresponds to solving an optimization problom objective to find the best linear shared space called ***G*** for the *J* view of a data
+
+**DeepGCCA** is a non-linear version of GCCA which uses neural networks as the feature extractor functions instead of linear transformers. ***DGCCA*** is some how exention of ***DeepCCA*** for more than two views though it has a different objective function.
+
+![](./img/DGCCA.jpg)
+![](./img/GCCA-DGCCA-Benton.jpg)
+ - figures source [Deep Generalized Canonical Correlation Analysis - Arxiv 1702.02519](https://arxiv.org/abs/1702.02519)
+
+# Example:
+
+Synthatic Data: [(synth data generator)](/synth_data.py)
+![](./img/Synth-data.jpg)
+
+DGCCA Latent space for views:
+![](./img/Lantent-space-views.jpg)
+
+ - figures source [Deep Generalized Canonical Correlation Analysis - Arxiv 1702.02519](https://arxiv.org/abs/1702.02519)
 
 # Prerequest:
 
