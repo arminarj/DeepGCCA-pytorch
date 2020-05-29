@@ -147,11 +147,17 @@ class Solver():
             for batch_idx in batch_idxs:
                 batch_x = [x[batch_idx, :] for x in x_list]
                 outputs = self.model(batch_x)
-                outputs_list.append(outputs)
+                outputs_list.append([o_j.clone().detach() for o_j in outputs])
                 loss = self.loss(outputs)
                 losses.append(loss.item())
-        outputs_list = [torch.cat(o1, dim=0) for o1 in outputs_list]
-        return losses, outputs_list
+        outputs_final = []
+        for i in range(len(x_list)):
+            view = []
+            for j in range(len(outputs_list)):
+                view.append(outputs_list[j][i].clone().detach())
+            view = torch.cat(view, dim=0)
+            outputs_final.append(view)
+        return losses, outputs_final
 
     def save(self, name):
         torch.save(self.model, name)
@@ -177,8 +183,8 @@ if __name__ == '__main__':
 
     # the parameters for training the network
     learning_rate = 1e-3
-    epoch_num = 10
-    batch_size = 400
+    epoch_num = 1
+    batch_size = 40
 
     # the regularization parameter of the network
     # seems necessary to avoid the gradient exploding especially when non-saturating activations are used

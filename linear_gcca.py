@@ -21,9 +21,9 @@ class linear_gcca():
             assert torch.isnan(H).sum().item() == 0 
 
             o_shape = H.size(0)  # N
-            m = H.size(1)   # out_dim
-            self.m[i] = H.mean(dim=1) 
-            Hbar = H - H.mean(dim=1).repeat(m, 1).view(-1, m)
+            m = H.size(0)   # out_dim
+            self.m[i] = H.mean(dim=0)
+            Hbar = H - H.mean(dim=0).repeat(1, m).view(m, -1)
             assert torch.isnan(Hbar).sum().item() == 0
 
             A, S, B = Hbar.svd(some=True, compute_uv=True)
