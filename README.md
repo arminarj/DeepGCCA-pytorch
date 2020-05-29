@@ -43,4 +43,14 @@ DGCCA Latent space for views:
  
  ## Notes:
  
+ ### check list:
+ 
+ - cuda test
+ - different Batch sizes
+ 
+ ### to do: 
+ 
+ - Nan gradient/update rules (Famous issue of Deep CCA - based models, like [DeepCCA Nan outputs]()
+ - More numerical stabilization for varient Architectures
+ 
  Warmest thanks to Mr. Adrian Benton for his kind helps.
