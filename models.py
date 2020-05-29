@@ -19,8 +19,8 @@ class MlpNet(nn.Module):
             else:
                 layers.append(nn.Sequential(
                     nn.Linear(layer_sizes[l_id], layer_sizes[l_id + 1]),
-                    nn.ReLU(),
-                    # nn.BatchNorm1d(num_features=layer_sizes[l_id + 1], affine=True),
+                    nn.Sigmoid(),
+                    nn.BatchNorm1d(num_features=layer_sizes[l_id + 1], affine=False),
                 ))
         self.layers = nn.ModuleList(layers)
 

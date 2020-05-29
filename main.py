@@ -37,6 +37,8 @@ class Solver():
         self.loss = model.loss
         self.optimizer = torch.optim.Adam(
             self.model.model_list.parameters(), lr=learning_rate, weight_decay=reg_par)
+        self.scheduler = torch.optim.lr_scheduler.StepLR(
+            self.optimizer, step_size=200, gamma=0.7)
         self.device = device
 
         self.linear_gcca = linear_gcca()
@@ -86,6 +88,7 @@ class Solver():
                 train_losses.append(loss.item())
                 loss.backward()
                 self.optimizer.step()
+                self.scheduler.step()
             train_loss = np.mean(train_losses)
 
             info_string = "Epoch {:d}/{:d} - time: {:.2f} - training_loss: {:.4f}"
@@ -145,7 +148,7 @@ class Solver():
             losses = []
             outputs_list = []
             for batch_idx in batch_idxs:
-                batch_x = [x[batch_idx, :] for x in x_list]
+                batch_x = [x[batch_idx, :].to(self.device) for x in x_list]
                 outputs = self.model(batch_x)
                 outputs_list.append([o_j.clone().detach() for o_j in outputs])
                 loss = self.loss(outputs)
@@ -176,15 +179,15 @@ if __name__ == '__main__':
     outdim_size = 2
 
     # number of layers with nodes in each one
-    layer_sizes1 = [128, 128, outdim_size]
-    layer_sizes2 = [128, 128, outdim_size]
-    layer_sizes3 = [128, 128, outdim_size]
+    layer_sizes1 = [256, 512, 128, outdim_size]
+    layer_sizes2 = [256, 512, 128, outdim_size]
+    layer_sizes3 = [256, 512, 128, outdim_size]
     layer_sizes_list = [layer_sizes1, layer_sizes2, layer_sizes3] 
 
     # the parameters for training the network
-    learning_rate = 1e-3
-    epoch_num = 100
-    batch_size = 40
+    learning_rate = 1e-2
+    epoch_num = 1000
+    batch_size = 400
 
     # the regularization parameter of the network
     # seems necessary to avoid the gradient exploding especially when non-saturating activations are used
@@ -201,8 +204,10 @@ if __name__ == '__main__':
 
     N = 400
     views = create_synthData(N)
-    for view in views:
-        print(view.shape)
+    print(f'input views shape :')
+    for i, view in enumerate(views):
+        print(f'view_{i} :  {view.shape}')
+        view = view.to(device)
 
     # size of the input for view 1 and view 2
     input_shape_list = [view.shape[-1] for view in views]
