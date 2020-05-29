@@ -183,7 +183,7 @@ if __name__ == '__main__':
 
     # the parameters for training the network
     learning_rate = 1e-3
-    epoch_num = 1
+    epoch_num = 100
     batch_size = 40
 
     # the regularization parameter of the network
@@ -228,23 +228,24 @@ if __name__ == '__main__':
     #     0) + val1.size(0), train1.size(0) + val1.size(0) + test1.size(0)]
     loss, outputs = solver.test(views, apply_linear_gcca)
 
-    # N = 400
-    # classes = ['Class1' for i in range(int(N/2))] + ['Class2' for i in range(int(N/2))] 
-    # dfs = []
-    # for o in outputs:
-    #     print(o.shape)
-    #     df = pd.DataFrame(o, columns=['x', 'y'])
-    #     df['Classes'] = classes
-    #     dfs.append(df)
+    import os
+    outDir = './'
+    N = 400
+    classes = ['Class1' for i in range(int(N/2))] + ['Class2' for i in range(int(N/2))] 
+    dfs = []
+    for o in outputs:
+        df = pd.DataFrame(o, columns=['x', 'y'])
+        df['Classes'] = classes
+        dfs.append(df)
     
-    # # Plot to PDF
-    # with PdfPages(os.path.join(outDir, 'DGCCA.pdf')) as pdf:
-    #   for viewIdx, df in enumerate(dfs):
-    #     fig = sns.lmplot(x="x", y="y", fit_reg=False, markers=['+', 'o'], legend=False, hue="Classes", data=df).fig
-    #     plt.legend(loc='best')
-    #     plt.title('View %d' % (viewIdx))
-    #     pdf.savefig()
-    #     plt.close(fig)
+    # Plot to PDF
+    with PdfPages(os.path.join(outDir, 'DGCCA.pdf')) as pdf:
+      for viewIdx, df in enumerate(dfs):
+        fig = sns.lmplot(x="x", y="y", fit_reg=False, markers=['+', 'o'], legend=False, hue="Classes", data=df).fig
+        plt.legend(loc='best')
+        plt.title('View %d' % (viewIdx))
+        pdf.savefig()
+        plt.close(fig)
 
     # solver.model.load_state_dict(d)
     # solver.model.parameters()
