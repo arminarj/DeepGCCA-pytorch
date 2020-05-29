@@ -89,8 +89,8 @@ class linear_gcca():
         self.U = U 
 
     def _get_result(self, x, idx):
-        m = x.size(1)   # out_dim
-        result = x - x.mean(dim=1).repeat(m, 1).view(-1, m)
+        m = x.size(0)   # out_dim
+        result = x - x.mean(dim=0).repeat(1, m).view(m, -1)
         result = torch.mm(result,self.U[idx])
         return result
 
