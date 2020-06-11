@@ -50,7 +50,11 @@ DGCCA Latent space for views:
  
  ### to do: 
  
+<<<<<<< HEAD
  - Nan gradient/update rules (Famous issue of Deep CCA - based models, like [DeepCCA Nan outputs]()
+=======
+ - Nan gradient/update rules (Famous issue of Deep CCA - based models, like [DeepCCA Nan outputs](https://github.com/Michaelvll/DeepCCA))
+>>>>>>> 7602d50636f2d3eadb75857919d1a012611a81f4
  - More numerical stabilization for varient Architectures
  
  Warmest thanks to Mr. Adrian Benton for his kind helps.
