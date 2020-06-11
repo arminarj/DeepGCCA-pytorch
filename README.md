@@ -18,6 +18,11 @@ Adrian Benton, Huda Khayrallah, Biman Gujral, Dee Ann Reisinger, Sheng Zhang, an
 ![](./img/GCCA-DGCCA-Benton.jpg)
  - figures source [Deep Generalized Canonical Correlation Analysis - Arxiv 1702.02519](https://arxiv.org/abs/1702.02519)
 
+## Pseudocode algorithm:
+
+Pseudocode algorithm based on the paper,
+![](./img/psuedocode.jpg)
+
 # Example:
 
 Synthatic Data: [(synth data generator)](/synth_data.py)
@@ -46,15 +51,11 @@ DGCCA Latent space for views:
  ### check list:
  
  - cuda test
- - different Batch sizes
+ - Varient Batch sizes test
  
  ### to do: 
  
-<<<<<<< HEAD
- - Nan gradient/update rules (Famous issue of Deep CCA - based models, like [DeepCCA Nan outputs]()
-=======
  - Nan gradient/update rules (Famous issue of Deep CCA - based models, like [DeepCCA Nan outputs](https://github.com/Michaelvll/DeepCCA))
->>>>>>> 7602d50636f2d3eadb75857919d1a012611a81f4
  - More numerical stabilization for varient Architectures
  
  Warmest thanks to Mr. Adrian Benton for his kind helps.
